@@ -1,13 +1,11 @@
 const socket = io();
 
 // Escucho el evento 'products' y renderizo la tabla cuando lleguen productos
-socket.emit('Starting socket connection', (socket) => {
-    console.log('Starting socket connection');
+socket.emit('mensaje', "Cliente: Conexión establecida");
 
-    socket.on('products', (products) => {
-        console.log(products);
-    });
-
-    socket.emit("Respuesta", "Hola soy el cliente");
-
+socket.on('respuesta', (info) => {
+    if(info){
+        console.log(info);
+        socket.emit('juego', "poker");
+    }
 });
