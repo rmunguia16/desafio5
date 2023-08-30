@@ -57,9 +57,9 @@ class ProductManager {
         }
     };
 
-    addProduct(product, cid) {
-        let cartItem;
+    addProduct(product) {
         this.getProducts();
+        console.log(product);
         if (product.thumbnail == undefined) product.thumbnail = "Sin imagen";
         if (Object.keys(product).toString() != objectKeys.toString()) {
             console.log("No se puede agregar, porque el producto no tiene las propiedades necesarias");

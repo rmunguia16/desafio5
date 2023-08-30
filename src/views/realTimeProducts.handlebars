@@ -1,20 +1,20 @@
 <div class="main">
-        <div class="products">
-            {{#each products}}
-            <div class="product">
-                <h2>{{this.title}}</h2>
-                <p>{{this.description}}</p>
-                <p>{{this.code}}</p>
-                <p>{{this.price}}</p>
-                <p>{{this.status}}</p>
-                <p>{{this.stock}}</p>
-                <p>{{this.category}}</p>
-                {{#if thumbnail}}
-                <img src="{{this.thumbnail}}" alt="{{title}}">
-                {{else}}
-                <p>{{this.thumbnail}}</p>
-                {{/if}}
-            </div>
+    <div class="products">
+        {{#each products}}
+        <div class="product">
+            <h2>{{this.title}}</h2>
+            <p>{{this.description}}</p>
+            <p>{{this.code}}</p>
+            <p>{{this.price}}</p>
+            <p>{{this.status}}</p>
+            <p>{{this.stock}}</p>
+            <p>{{this.category}}</p>
+            {{#if thumbnail}}
+            <img src="{{this.thumbnail}}" alt="{{title}}">
+            {{else}}
+            <p>{{this.thumbnail}}</p>
+            {{/if}}
+        </div>
         {{/each}}
     </div>
     <div class="form">
@@ -28,7 +28,10 @@
             <label for="price">price</label>
             <input type="number" name="price" placeholder="Precio">
             <label for="status">status</label>
-            <input type="checkbox" name="status" placeholder="Status">
+            <select id="status" name="status">
+                <option value="true">true</option>
+                <option value="false">false</option>
+            </select>
             <label for="stock">stock</label>
             <input type="number" name="stock" placeholder="Stock">
             <label for="category">category</label>

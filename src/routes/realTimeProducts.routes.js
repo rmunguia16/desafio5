@@ -3,20 +3,9 @@ import express from 'express';
 import path from 'path';
 import __dirname from "../utils.js";
 import PM from '../../productManager.js';
-import { Server } from 'socket.io';
 
 const productsFile = '../products.json';
 const app = express();
-const io = new Server(app.get('server'));
-console.log(app.get('server')+'Prueba');
-io.on('connection', (socket) => {
-    console.log('Un cliente se ha conectado');
-    socket.on('newProduct', (product) => {
-        console.log(product);
-        socket.emit('agregar', pm.addProduct(product));
-    });
-});
-
 
 let pm = new PM.ProductManager(path.resolve(__dirname, productsFile));
 
@@ -78,5 +67,17 @@ router.delete('/:pid', (req, res) => {
         socket.emit('agregar',pm.addProduct(product));
     });
 });*/
+
+let io = app.get('io')
+console.log(app.get('views'));
+console.log(io);
+/* io.on('connection', (socket) => {
+    console.log('Un cliente se ha conectado');
+    socket.on('newProduct', (product) => {
+        console.log(product);
+        socket.emit('agregar', pm.addProduct(product));
+    });
+});
+console.log(io); */
 
 export default router;
