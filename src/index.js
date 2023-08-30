@@ -5,11 +5,21 @@ import cartRouter from "./routes/cart.routes.js";
 import { engine } from 'express-handlebars';
 import __dirname from "./utils.js";
 import path from 'path';
-import {Server} from 'socket.io';
+import { Server } from 'socket.io';
 
 const app = express();
-const httpServer = app.listen(8080, () => {console.log('\nServidor escuchando en http://localhost:8080');});
-const socketServer = new Server(httpServer);
+const server = app.listen(8080, () => {console.log('\nServidor escuchando en http://localhost:8080');});
+const io = new Server(server);
+
+//Conexion de Socket.io
+io.on('connection', (socket) => {
+    console.log('Comunicacion establecida con el cliente');
+
+    socket.on('Starting socket connection', (data) => {
+        console.log(data);
+        socket.emit('respuesta', "Conexion establecida con el servidor");
+    });
+});
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
